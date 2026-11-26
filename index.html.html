@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Expense &amp; Budget Visualizer</h1>
+      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Toggle Dark/Light Mode">
+        🌙 Dark Mode
+      </button>
+    </header>
+
+    <section class="card balance-card">
+      <p class="balance-label">TOTAL BALANCE</p>
+      <h2 id="total-balance" class="balance-amount">$0.00</h2>
+    </section>
+
+    <section class="card form-card">
+      <h3>Add Transaction</h3>
+      <form id="transaction-form" novalidate>
+        <div class="form-group">
+          <label for="item-name">Item Name</label>
+          <input
+            type="text"
+            id="item-name"
+            placeholder="e.g., Cilok, Bus Ticket, Cinema"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="item-amount" id="amount-label">Amount ($)</label>
+          <div class="amount-input-row">
+            <select id="currency-select" class="currency-select" aria-label="Select currency">
+              <option value="USD">USD ($)</option>
+              <option value="IDR">IDR (Rp)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="JPY">JPY (¥)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="SGD">SGD (S$)</option>
+              <option value="AUD">AUD (A$)</option>
+              <option value="KRW">KRW (₩)</option>
+              <option value="MYR">MYR (RM)</option>
+            </select>
+            <input
+              type="number"
+              id="item-amount"
+              placeholder="0.00"
+              step="any"
+              min="0.01"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="item-category">Category</label>
+          <select id="item-category" required></select>
+        </div>
+
+        <div class="custom-category-box">
+          <input
+            type="text"
+            id="new-category-input"
+            placeholder="New category name (e.g., Bills)"
+          />
+          <button type="button" id="add-category-btn" class="btn-secondary">
+            + Add Category
+          </button>
+        </div>
+
+        <p id="form-error" class="error-msg" aria-live="polite"></p>
+
+        <button type="submit" class="btn-primary">Add Transaction</button>
+      </form>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="card transactions-card">
+        <div class="card-header-row">
+          <h3>Transactions</h3>
+          <select id="sort-transactions" class="sort-select" aria-label="Sort transactions">
+            <option value="newest">Sort: Newest</option>
+            <option value="amount-desc">Amount: High to Low</option>
+            <option value="amount-asc">Amount: Low to High</option>
+            <option value="category">Category (A–Z)</option>
+          </select>
+        </div>
+
+        <div id="transaction-list" class="transaction-list"></div>
+      </section>
+
+      <section class="card chart-card">
+        <h3>Spending by Category</h3>
+        <div class="chart-wrapper">
+          <canvas id="expense-chart"></canvas>
+          <p id="empty-chart-msg" class="empty-state">No expenses recorded yet.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

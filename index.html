@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Top Bar ── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-icon">💰</span>
+      Budget Visualizer
+    </div>
+    <div class="topbar-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+        <span class="toggle-icon" id="theme-icon">🌙</span>
+        <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main Layout ── -->
+  <main class="main-layout">
+
+    <!-- ── Left Column ── -->
+    <div class="left-column">
+
+      <!-- Balance Strip -->
+      <div class="balance-strip">
+        <div class="balance-label">Total Spent</div>
+        <div class="balance-amount">
+          <span class="currency">$</span><span id="balance-amount">0.00</span>
+        </div>
+        <div class="balance-sub">
+          <div class="balance-sub-item">Transactions: <span id="tx-count">0</span></div>
+          <div class="balance-sub-item">Avg: <span id="avg-amount">$0.00</span></div>
+        </div>
+      </div>
+
+      <!-- Add Expense Form -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-header">
+          <span class="card-title">Add Expense</span>
+        </div>
+        <div class="card-body">
+          <form id="expense-form" novalidate>
+
+            <!-- Item Name -->
+            <div class="form-group">
+              <label class="form-label" for="item-name">Item Name</label>
+              <input
+                class="form-control"
+                type="text"
+                id="item-name"
+                placeholder="e.g. Lunch, Bus ticket…"
+                maxlength="60"
+                autocomplete="off"
+              />
+              <div class="form-error" id="name-error"></div>
+            </div>
+
+            <!-- Amount -->
+            <div class="form-group">
+              <label class="form-label" for="item-amount">Amount ($)</label>
+              <input
+                class="form-control"
+                type="number"
+                id="item-amount"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+              />
+              <div class="form-error" id="amount-error"></div>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+              <label class="form-label" for="item-category">Category</label>
+              <select class="form-control" id="item-category">
+                <option value="">Select a category</option>
+              </select>
+              <div class="form-error" id="category-error"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              ＋ Add Expense
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Custom Categories -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-header">
+          <span class="card-title">Custom Categories</span>
+        </div>
+        <div class="card-body">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" for="new-category">Add a Category</label>
+            <div class="category-row">
+              <input
+                class="form-control"
+                type="text"
+                id="new-category"
+                placeholder="e.g. Health, Travel…"
+                maxlength="30"
+                autocomplete="off"
+              />
+              <button class="btn-icon" id="add-category-btn" aria-label="Add category" title="Add category">＋</button>
+            </div>
+          </div>
+          <div class="category-chips" id="category-chips"></div>
+        </div>
+      </div>
+
+    </div><!-- /left-column -->
+
+    <!-- ── Right Column ── -->
+    <div class="right-column">
+
+      <!-- Pie Chart -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Spending Breakdown</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="chart-wrap" id="chart-wrap">
+              <canvas id="pie-chart" width="200" height="200"></canvas>
+              <div class="chart-center-label">
+                <div class="center-value" id="chart-center-value"></div>
+                <div class="center-sub"   id="chart-center-sub"></div>
+              </div>
+            </div>
+            <div class="chart-empty" id="chart-empty" style="display:none;">
+              <div class="empty-icon">📊</div>
+              <p>Add expenses to see your chart.</p>
+            </div>
+            <div class="chart-legend" id="chart-legend"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction List -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Transactions</span>
+          <div class="list-controls">
+            <select class="sort-select" id="sort-select" aria-label="Sort transactions">
+              <option value="date">Newest first</option>
+              <option value="amount-desc">Amount: High → Low</option>
+              <option value="amount-asc">Amount: Low → High</option>
+              <option value="category">Category (A–Z)</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body" style="padding-top:12px;">
+          <div class="transaction-list" id="transaction-list"></div>
+        </div>
+      </div>
+
+    </div><!-- /right-column -->
+
+  </main>
+
+  <!-- ── Toast Container ── -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

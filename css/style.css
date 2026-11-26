@@ -1,0 +1,334 @@
+:root {
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-primary: #22262a;
+    --text-secondary: #6c757d;
+    --border-color: #e0e4e8;
+    --accent-blue: #2b8be6;
+    --accent-blue-hover: #1e73c4;
+    --danger-red: #e0483e;
+    --danger-red-hover: #c5362d;
+    --tag-bg: #e9ecef;
+    --tag-text: #495057;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body.dark-mode {
+  --bg-color: #12151a;
+  --card-bg: #1c2026;
+  --text-primary: #f1f3f5;
+  --text-secondary: #adb5bd;
+  --border-color: #2f353f;
+  --accent-blue: #3b9eff;
+  --accent-blue-hover: #2584e0;
+  --danger-red: #eb5757;
+  --danger-red-hover: #d14040;
+  --tag-bg: #2b303a;
+  --tag-text: #ced4da;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  padding: 20px 16px 40px;
+}
+
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 8px 0;
+}
+
+.theme-btn {
+    position: absolute;
+    right: 0;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+}
+
+.theme-btn:hover {
+  transform: translateY(-1px);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.balance-card {
+  text-align: center;
+  padding: 28px 20px;
+}
+
+.balance-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.balance-amount {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.amount-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.currency-select {
+  width: 145px;
+  flex-shrink: 0;
+}
+
+.amount-input-row input[type="number"] {
+  flex: 1;
+}
+
+.amount-preview {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  min-height: 16px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent-blue);
+}
+
+.custom-category-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.custom-category-box input {
+  flex: 1;
+}
+
+.btn-secondary {
+  background-color: var(--tag-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  opacity: 0.85;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-blue-hover);
+}
+
+.error-msg {
+  color: var(--danger-red);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  min-height: 18px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.card-header-row h3 {
+  margin-bottom: 0;
+}
+
+.sort-select {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+}
+
+.transaction-list {
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.transaction-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent-blue);
+}
+
+.transaction-category {
+  display: inline-block;
+  width: fit-content;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.btn-delete {
+  background-color: var(--danger-red);
+  color: #ffffff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: var(--danger-red-hover);
+}
+
+.chart-wrapper {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 24px 0;
+}
+
+@media (max-width: 720px) {
+  .app-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .theme-btn {
+    position: static;
+  }
+
+  .amount-input-row {
+    flex-direction: column;
+  }
+
+  .currency-select {
+    width: 100%;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
