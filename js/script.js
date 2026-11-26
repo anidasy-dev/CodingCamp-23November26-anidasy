@@ -19,12 +19,12 @@ const CURRENCIES = {
 
 const DEFAULT_CATEGORIES = ["Food", "Transport", "Fun"];
 const CATEGORY_COLORS = {
-  Food: "#28c76f",
-  Transport: "#2b8be6",
-  Fun: "#e67e22"
+  Food: "#45b384",
+  Transport: "#3498db",
+  Fun: "#c87533"
 };
 const EXTRA_PALETTE = [
-  "#9b59b6", "#e84393", "#00cec9", "#fdcb6e", "#6c5ce7", "#d63031", "#00b894"
+  "#9b59b6", "#e84393", "#00cec9", "#f1c40f", "#6c5ce7", "#e74c3c", "#1abc9c"
 ];
 
 let transactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.TRANSACTIONS)) || [];
@@ -40,7 +40,6 @@ const itemNameInput = document.getElementById("item-name");
 const itemAmountInput = document.getElementById("item-amount");
 const currencySelect = document.getElementById("currency-select");
 const amountLabel = document.getElementById("amount-label");
-const amountPreview = document.getElementById("amount-preview");
 const itemCategorySelect = document.getElementById("item-category");
 const newCategoryInput = document.getElementById("new-category-input");
 const addCategoryBtn = document.getElementById("add-category-btn");
@@ -87,17 +86,6 @@ function updateAmountHelper() {
   if (cfg.decimals === 0 && itemAmountInput.value) {
     itemAmountInput.value = String(Math.round(parseFloat(itemAmountInput.value) || 0));
   }
-  updateAmountPreview();
-}
-
-function updateAmountPreview() {
-  const rawVal = parseFloat(itemAmountInput.value);
-  if (isNaN(rawVal) || rawVal <= 0) {
-    amountPreview.textContent = `Formatted as: ${formatMoney(0, currentCurrency)}`;
-    return;
-  }
-  const normalized = getCurrencyConfig(currentCurrency).decimals === 0 ? Math.round(rawVal) : rawVal;
-  amountPreview.textContent = `Formatted as: ${formatMoney(normalized, currentCurrency)}`;
 }
 
 currencySelect.addEventListener("change", () => {
@@ -106,8 +94,6 @@ currencySelect.addEventListener("change", () => {
   updateAmountHelper();
   renderUI();
 });
-
-itemAmountInput.addEventListener("input", updateAmountPreview);
 
 function applySavedTheme() {
   const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
@@ -187,7 +173,6 @@ form.addEventListener("submit", (e) => {
 
   itemNameInput.value = "";
   itemAmountInput.value = "";
-  updateAmountPreview();
 });
 
 function deleteTransaction(id) {
@@ -306,7 +291,7 @@ function updateChart() {
         {
           data: dataValues,
           backgroundColor: bgColors,
-          borderColor: isDark ? "#1c2026" : "#ffffff",
+          borderColor: isDark ? "#1d2128" : "#ffffff",
           borderWidth: 2
         }
       ]
@@ -322,7 +307,7 @@ function updateChart() {
             boxWidth: 16,
             padding: 14,
             font: {
-              size: 12
+              size: 11
             }
           }
         },
